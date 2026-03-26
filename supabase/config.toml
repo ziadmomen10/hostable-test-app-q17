@@ -1,0 +1,50 @@
+project_id = "hkfjyktrgcxkxzdxxatx"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[functions.admin-auth]
+verify_jwt = false
+
+[functions.get-exchange-rates]
+verify_jwt = false
+
+[functions.purge-cloudflare-cache]
+verify_jwt = false
+
+[functions.ai-translate]
+verify_jwt = false
+
+[functions.ai-translate-batch]
+verify_jwt = false
+
+[functions.create-admin-user]
+verify_jwt = false
+
+[functions.analyze-competitor]
+verify_jwt = false
+
+[functions.fix-page-translations]
+verify_jwt = false
+
+[functions.seo-ai-tools]
+verify_jwt = false
+
+[functions.seo-check-links]
+verify_jwt = false
+
+[functions.realtime-exchange-rates]
+verify_jwt = false
+
+[functions.sync-exchange-rates]
+verify_jwt = false
+
+[functions.auth-email-hook]
+verify_jwt = false
+
+[functions.sync-test]
+verify_jwt = false

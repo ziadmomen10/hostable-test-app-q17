@@ -1,0 +1,1 @@
+INSERT INTO public.admin_config (key, value) VALUES ('seo_ai_provider', 'openai') ON CONFLICT DO NOTHING;

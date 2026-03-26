@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HostOnce</title>
+    <meta name="description" content="HostOnce - Premium Web Hosting Solutions" />
+    <meta name="author" content="HostOnce" />
+
+    <meta property="og:title" content="HostOnce" />
+    <meta property="og:description" content="HostOnce - Premium Web Hosting Solutions" />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet">
+
+    <!-- Polyfill crypto.randomUUID for non-secure HTTP contexts -->
+    <script>
+      if (typeof crypto !== "undefined" && typeof crypto.randomUUID !== "function") {
+        crypto.randomUUID = function () {
+          var bytes = new Uint8Array(16);
+          crypto.getRandomValues(bytes);
+          bytes[6] = (bytes[6] & 0x0f) | 0x40;
+          bytes[8] = (bytes[8] & 0x3f) | 0x80;
+          var hex = Array.from(bytes).map(function(b) { return b.toString(16).padStart(2, "0"); }).join("");
+          return hex.slice(0,8)+"-"+hex.slice(8,12)+"-"+hex.slice(12,16)+"-"+hex.slice(16,20)+"-"+hex.slice(20);
+        };
+      }
+    </script>
+
+    <!-- Auto-retry failed dynamic imports & load timeout fallback -->
+    <script>
+      (function() {
+        // Layer 1: Patch dynamic import() to retry on network errors
+        var originalImport = null;
+        try {
+          // Wrap the native import meta resolve for chunk retries
+          window.__vite_chunk_retry = function(importFn, retries, delay) {
+            retries = retries || 3;
+            delay = delay || 1000;
+            return importFn().catch(function(err) {
+              if (retries <= 0) throw err;
+              var msg = (err && err.message) || '';
+              var isNetworkError = msg.indexOf('Failed to fetch') !== -1 ||
+                msg.indexOf('error loading dynamically imported module') !== -1 ||
+                msg.indexOf('Importing a module script failed') !== -1 ||
+                msg.indexOf('Loading chunk') !== -1 ||
+                msg.indexOf('Loading CSS chunk') !== -1 ||
+                err.name === 'ChunkLoadError' ||
+                err.name === 'TypeError';
+              if (!isNetworkError) throw err;
+              return new Promise(function(resolve) {
+                setTimeout(resolve, delay);
+              }).then(function() {
+                return window.__vite_chunk_retry(importFn, retries - 1, delay * 2);
+              });
+            });
+          };
+        } catch(e) { /* silent */ }
+
+        // Layer 2: Load timeout — if React hasn't mounted in 15s, show recovery UI
+        var loadTimer = setTimeout(function() {
+          var root = document.getElementById('root');
+          if (root && (!root.hasChildNodes() || root.innerHTML.trim() === '')) {
+            root.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;font-family:system-ui,-apple-system,sans-serif;padding:2rem;text-align:center;background:#fafafa;color:#1a1a1a">' +
+              '<div style="width:48px;height:48px;border-radius:50%;background:#fef3c7;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;font-size:24px">⚡</div>' +
+              '<h1 style="font-size:1.25rem;font-weight:600;margin:0 0 0.5rem">Page failed to load</h1>' +
+              '<p style="color:#6b7280;max-width:400px;margin:0 0 1.5rem;line-height:1.5">The application could not load, likely due to a network interruption. Please check your connection and reload.</p>' +
+              '<button onclick="window.location.reload()" style="padding:0.625rem 1.5rem;background:#2563eb;color:#fff;border:none;border-radius:0.5rem;font-size:0.875rem;font-weight:500;cursor:pointer">Reload Page</button>' +
+              '</div>';
+          }
+        }, 15000);
+
+        // Clear timer once React mounts
+        var observer = new MutationObserver(function(mutations) {
+          var root = document.getElementById('root');
+          if (root && root.hasChildNodes() && root.innerHTML.trim() !== '') {
+            clearTimeout(loadTimer);
+            observer.disconnect();
+          }
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+          var root = document.getElementById('root');
+          if (root) {
+            observer.observe(root, { childList: true, subtree: true });
+          }
+        });
+      })();
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

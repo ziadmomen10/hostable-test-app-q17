@@ -1,0 +1,58 @@
+import { HelpCircle } from 'lucide-react';
+import { V2AffiliateFaqSection } from '@/components/design-v2/sections/V2AffiliateFaqSection';
+import V2AffiliateFaqSettingsContent from '@/components/admin/sections/V2AffiliateFaqSettingsContent';
+import { registerSection, createSettingsWrapper } from '../registry';
+
+registerSection({
+  type: 'v2-affiliate-faq',
+  displayName: 'V2 Frequently Asked Questions',
+  icon: HelpCircle,
+  category: 'content',
+  component: V2AffiliateFaqSection,
+  settingsComponent: createSettingsWrapper(V2AffiliateFaqSettingsContent),
+  defaultProps: {
+    title: 'Frequently Asked Questions',
+    subtitle: 'Get clear answers about our virtual dedicated servers.',
+    reachOutText: 'Still got questions?\nReach Out to Us',
+    reachOutLink: '#contact',
+    honeyAIText: 'Ask HoneyAI™',
+    honeyAILink: '/honey-ai',
+    faqs: [
+      { id: crypto.randomUUID(), question: 'What is the Hostonce Affiliate Program?', answer: '' },
+      { id: crypto.randomUUID(), question: 'What is the Commission Structure?', answer: '' },
+      { id: crypto.randomUUID(), question: 'How Do I Get WordPress Help?', answer: '' },
+      { id: crypto.randomUUID(), question: 'Will I Get Paid for Hosting Renewals or Upgrades?', answer: '' },
+      { id: crypto.randomUUID(), question: 'Will I Get Paid for the Sales of Domains?', answer: '' },
+      { id: crypto.randomUUID(), question: 'How Much Can I Earn?', answer: '' },
+      { id: crypto.randomUUID(), question: 'What is the Minimum Payment Threshold?', answer: '' },
+      { id: crypto.randomUUID(), question: 'What Are the Payout Requirements?', answer: '' },
+    ],
+  },
+  description: 'V2 Affiliate Partner Program FAQ section with two-column layout and accordion.',
+  usesDataWrapper: true,
+  pageGroup: 'V2 Affiliate Partner Program',
+  pageGroupOrder: 2,
+  translatableProps: [
+    'title',
+    'subtitle',
+    'reachOutText',
+    'honeyAIText',
+    'faqs.0.question',
+    'faqs.0.answer',
+    'faqs.1.question',
+    'faqs.1.answer',
+    'faqs.2.question',
+    'faqs.2.answer',
+    'faqs.3.question',
+    'faqs.3.answer',
+    'faqs.4.question',
+    'faqs.4.answer',
+    'faqs.5.question',
+    'faqs.5.answer',
+    'faqs.6.question',
+    'faqs.6.answer',
+    'faqs.7.question',
+    'faqs.7.answer',
+  ],
+  dndArrays: [{ path: 'faqs', strategy: 'vertical', handlePosition: 'left' }],
+});

@@ -1,0 +1,1 @@
+ALTER TABLE pages ADD COLUMN css_content TEXT;

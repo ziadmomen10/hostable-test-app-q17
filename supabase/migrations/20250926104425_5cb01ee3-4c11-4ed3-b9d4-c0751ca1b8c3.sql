@@ -1,0 +1,23 @@
+-- Update English translations to show proper content instead of keys
+UPDATE public.translations SET value = '⚡ Flash Sale: 75% Off Web Hosting - Ends Today!' WHERE namespace = 'homepage' AND key = 'flash_sale_text' AND language_id = (SELECT id FROM languages WHERE code = 'en');
+UPDATE public.translations SET value = 'Reliable Web Hosting' WHERE namespace = 'homepage' AND key = 'hero_title_line1' AND language_id = (SELECT id FROM languages WHERE code = 'en');
+UPDATE public.translations SET value = 'starting from $3.29/mo' WHERE namespace = 'homepage' AND key = 'hero_title_line2' AND language_id = (SELECT id FROM languages WHERE code = 'en');
+UPDATE public.translations SET value = 'Unlimited Bandwidth' WHERE namespace = 'homepage' AND key = 'feature_bandwidth' AND language_id = (SELECT id FROM languages WHERE code = 'en');
+UPDATE public.translations SET value = 'Free DDoS Protection' WHERE namespace = 'homepage' AND key = 'feature_ddos' AND language_id = (SELECT id FROM languages WHERE code = 'en');
+UPDATE public.translations SET value = '24/7 Support' WHERE namespace = 'homepage' AND key = 'feature_support' AND language_id = (SELECT id FROM languages WHERE code = 'en');
+UPDATE public.translations SET value = '99.9% Uptime' WHERE namespace = 'homepage' AND key = 'feature_uptime' AND language_id = (SELECT id FROM languages WHERE code = 'en');
+UPDATE public.translations SET value = 'Starting at' WHERE namespace = 'homepage' AND key = 'starting_at' AND language_id = (SELECT id FROM languages WHERE code = 'en');
+UPDATE public.translations SET value = '/mo' WHERE namespace = 'homepage' AND key = 'per_month' AND language_id = (SELECT id FROM languages WHERE code = 'en');
+UPDATE public.translations SET value = 'Save 75%' WHERE namespace = 'homepage' AND key = 'save_percent' AND language_id = (SELECT id FROM languages WHERE code = 'en');
+UPDATE public.translations SET value = 'Get Started Now' WHERE namespace = 'homepage' AND key = 'get_started_now' AND language_id = (SELECT id FROM languages WHERE code = 'en');
+UPDATE public.translations SET value = 'Try UltraAI' WHERE namespace = 'homepage' AND key = 'try_ultra_ai' AND language_id = (SELECT id FROM languages WHERE code = 'en');
+UPDATE public.translations SET value = '30-Day Risk-Free Guarantee' WHERE namespace = 'homepage' AND key = 'risk_free_guarantee' AND language_id = (SELECT id FROM languages WHERE code = 'en');
+UPDATE public.translations SET value = 'People say "Excellent"' WHERE namespace = 'homepage' AND key = 'people_say_excellent' AND language_id = (SELECT id FROM languages WHERE code = 'en');
+UPDATE public.translations SET value = 'Based on 2,000+ reviews' WHERE namespace = 'homepage' AND key = 'based_on_reviews' AND language_id = (SELECT id FROM languages WHERE code = 'en');
+UPDATE public.translations SET value = 'Introducing UltraAI' WHERE namespace = 'homepage' AND key = 'introducing_ultra_ai' AND language_id = (SELECT id FROM languages WHERE code = 'en');
+UPDATE public.translations SET value = 'Smart domain advisor' WHERE namespace = 'homepage' AND key = 'domain_advisor' AND language_id = (SELECT id FROM languages WHERE code = 'en');
+UPDATE public.translations SET value = 'Ask anything' WHERE namespace = 'homepage' AND key = 'ask_anything' AND language_id = (SELECT id FROM languages WHERE code = 'en');
+UPDATE public.translations SET value = 'Rated 4.8' WHERE namespace = 'homepage' AND key = 'rated_score' AND language_id = (SELECT id FROM languages WHERE code = 'en');
+UPDATE public.translations SET value = '300+ reviews' WHERE namespace = 'homepage' AND key = 'reviews_count_300' AND language_id = (SELECT id FROM languages WHERE code = 'en');
+UPDATE public.translations SET value = '1,000+ reviews' WHERE namespace = 'homepage' AND key = 'reviews_count_1000' AND language_id = (SELECT id FROM languages WHERE code = 'en');
+UPDATE public.translations SET value = '1,704 reviews' WHERE namespace = 'homepage' AND key = 'reviews_count_1704' AND language_id = (SELECT id FROM languages WHERE code = 'en');

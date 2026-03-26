@@ -1,0 +1,28 @@
+-- Add all currencies from the header dropdown
+INSERT INTO public.currencies (code, name, symbol, is_default, is_active) VALUES
+('TRY', 'Turkish Lira', '₺', false, true),
+('RUB', 'Russian Ruble', '₽', false, true),
+('CHF', 'Swiss Franc', 'CHF', false, true),
+('SGD', 'Singapore Dollar', 'S$', false, true),
+('INR', 'Indian Rupee', '₹', false, true),
+('BTC', 'Bitcoin', '₿', false, true),
+('AED', 'UAE Dirham', 'د.إ', false, true),
+('CNY', 'Chinese Yuan', '¥', false, true),
+('IDR', 'Indonesian Rupiah', 'Rp', false, true),
+('BRL', 'Brazilian Real', 'R$', false, true),
+('SAR', 'Saudi Riyal', '﷼', false, true),
+('MYR', 'Malaysian Ringgit', 'RM', false, true),
+('SEK', 'Swedish Krona', 'kr', false, true),
+('NZD', 'New Zealand Dollar', 'NZ$', false, true),
+('HKD', 'Hong Kong Dollar', 'HK$', false, true),
+('DKK', 'Danish Krone', 'kr', false, true),
+('ZAR', 'South African Rand', 'R', false, true),
+('PLN', 'Polish Zloty', 'zł', false, true),
+('ILS', 'Israeli Shekel', '₪', false, true),
+('THB', 'Thai Baht', '฿', false, true),
+('PHP', 'Philippine Peso', '₱', false, true),
+('RON', 'Romanian Leu', 'lei', false, true),
+('COP', 'Colombian Peso', '$', false, true),
+('NGN', 'Nigerian Naira', '₦', false, true),
+('GHS', 'Ghanaian Cedi', '₵', false, true)
+ON CONFLICT (code) DO NOTHING;

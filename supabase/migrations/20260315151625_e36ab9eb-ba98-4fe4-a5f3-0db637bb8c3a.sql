@@ -1,0 +1,1 @@
+INSERT INTO public.sync_test (test_message) VALUES ('sync-test-alpha'), ('sync-test-beta'), ('sync-test-gamma');
